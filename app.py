@@ -1283,7 +1283,7 @@ with tab3:
 
     with col_flow:
         # Global net flow chart
-        top_n_net = global_net.nsmallest(10).append(global_net.nlargest(10)).sort_values()
+        top_n_net = pd.concat([global_net.nsmallest(10), global_net.nlargest(10)]).sort_values()
         colors = [GREEN if v > 0 else RED for v in top_n_net.values]
         fig_gnet = go.Figure(go.Bar(
             x=top_n_net.values,
